@@ -1,15 +1,29 @@
 import { Button, TextField, Box } from '@mui/material';
 import './LoginForm.css';
-import { Formik } from 'formik';
 import { useCallback, useMemo } from 'react';
 import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { useApi } from '../api/ApiProvider';
+import { Formik } from 'formik';
 
 function LoginForm() {
+  const navigate = useNavigate();
+  const apiClient = useApi();
+
   const onSubmit = useCallback(
-    (values: { username: string; password: string }) => {
-      console.log(values);
+    (values: { username: string; password: string }, formik: any) => {
+      apiClient?.login(values).then((response) => {
+        if (response.success) {
+          // localStorage to implement token
+          localStorage.setItem('token', response.data?.token || '');
+          navigate('/home');
+        } else {
+          formik.setFieldError('username', ' ');
+          formik.setFieldError('password', 'Invalid username or password');
+        }
+      });
     },
-    [],
+    [apiClient, navigate],
   );
 
   const validationSchema = useMemo(
@@ -46,9 +60,7 @@ function LoginForm() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.username && Boolean(formik.errors.username)}
-              helperText={
-                formik.touched.username && Boolean(formik.errors.username)
-              }
+              helperText={formik.touched.username && formik.errors.username}
             />
             <TextField
               id="password"
@@ -57,9 +69,7 @@ function LoginForm() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={
-                formik.touched.password && Boolean(formik.errors.password)
-              }
+              helperText={formik.touched.password && formik.errors.password}
             />
             <Button
               variant="contained"
