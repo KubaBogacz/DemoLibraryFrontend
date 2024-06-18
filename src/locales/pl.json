@@ -1,0 +1,17 @@
+{
+  "library": "Biblioteka",
+  "polish": "Polski",
+  "english": "Angielski",
+  "listOfBooks": "Lista książek",
+  "listOfLoans": "Lista wypożyczeń",
+  "id": "ID",
+  "isbn": "ISBN",
+  "title": "Tytuł",
+  "author": "Autor",
+  "publisher": "Wydawca",
+  "publicationYear": "Rok publikacji",
+  "available": "Dostępność",
+  "loanBooks": "Wypożycz książkę",
+  "loanDate": "Data wypożyczenia",
+  "bookId": "ID książki"
+}

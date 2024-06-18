@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { LoginDTO, LoginResponseDTO } from './dto/login-dto';
 import { BookDTO } from './dto/book-dto';
+import { LoanDTO } from './dto/loan-dto';
 
 export type ClientResponse<T> = {
   success: boolean;
@@ -52,6 +53,71 @@ export class LibraryClient {
       return {
         success: true,
         data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 500,
+      };
+    }
+  }
+
+  public async getLoans(): Promise<ClientResponse<LoanDTO | null>> {
+    try {
+      const response = await this.client.get('/loans');
+
+      return {
+        success: true,
+        data: response.data,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 500,
+      };
+    }
+  }
+
+  public async returnBook(id: number): Promise<ClientResponse<null>> {
+    try {
+      const response = await this.client.delete(`/loans/${id}`);
+
+      return {
+        success: true,
+        data: null,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 500,
+      };
+    }
+  }
+
+  public async borrowBook(
+    id: number,
+    loanDate: string,
+  ): Promise<ClientResponse<null>> {
+    try {
+      const response = await this.client.post(
+        `/loans/${id}?loanDate=${encodeURIComponent(loanDate)}`,
+      );
+
+      return {
+        success: true,
+        data: null,
         statusCode: response.status,
       };
     } catch (error) {

@@ -1,0 +1,17 @@
+{
+  "library": "Library",
+  "polish": "Polish",
+  "english": "English",
+  "listOfBooks": "List of books",
+  "listOfLoans": "List of loans",
+  "id": "ID",
+  "isbn": "ISBN",
+  "title": "Title",
+  "author": "Author",
+  "publisher": "Publisher",
+  "publicationYear": "Publication year",
+  "available": "Availability",
+  "loanBooks": "Loan book",
+  "loanDate": "Loan date",
+  "bookId": "Book ID"
+}

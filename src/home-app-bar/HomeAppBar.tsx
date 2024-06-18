@@ -1,19 +1,19 @@
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import CustomMenuIcon from './CustomMenuIcon';
 
 function HomeAppBar() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton color="inherit" sx={{ mr: 2 }}>
-          <MenuIcon />
-        </IconButton>
+        <CustomMenuIcon />
         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-          Library
+          {t('library')}
         </Typography>
         <IconButton
           aria-label="account"

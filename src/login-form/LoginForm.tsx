@@ -74,11 +74,7 @@ function LoginForm() {
             <Button
               variant="contained"
               type="submit"
-              disabled={
-                !formik.isValid ||
-                !formik.touched.password ||
-                !formik.touched.username
-              }
+              disabled={!formik.isValid || formik.isSubmitting}
             >
               Log in
             </Button>
