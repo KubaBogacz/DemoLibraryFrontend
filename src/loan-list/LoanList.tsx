@@ -19,9 +19,9 @@ export default function LoanList() {
   }, [apiClient]);
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: t('id'), width: 70 },
-    { field: 'loan_date', headerName: t('loanDate'), width: 130 },
-    { field: 'book_id', headerName: t('bookId'), width: 130 },
+    { field: 'loanId', headerName: t('id'), width: 70 },
+    { field: 'loanDate', headerName: t('loanDate'), width: 190 },
+    { field: 'bookId', headerName: t('bookId'), width: 190 },
   ];
 
   const handleReturnBooks = () => {
@@ -48,6 +48,7 @@ export default function LoanList() {
           },
         }}
         pageSizeOptions={[5, 10]}
+        getRowId={(row) => row.loanId}
       />
       <Button
         onClick={handleReturnBooks}

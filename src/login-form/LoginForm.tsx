@@ -16,7 +16,7 @@ function LoginForm() {
         if (response.success) {
           // localStorage to implement token
           localStorage.setItem('token', response.data?.token || '');
-          navigate('/home');
+          navigate('/home/books');
         } else {
           formik.setFieldError('username', ' ');
           formik.setFieldError('password', 'Invalid username or password');

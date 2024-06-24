@@ -13,5 +13,9 @@
   "available": "Dostępność",
   "loanBooks": "Wypożycz książkę",
   "loanDate": "Data wypożyczenia",
-  "bookId": "ID książki"
+  "bookId": "ID książki",
+  "returnBooks": "Zwróć książkę",
+  "addUser": "Dodaj użytkownika",
+  "username": "Nazwa użytkownika",
+  "password": "Hasło"
 }

@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { LoginDTO, LoginResponseDTO } from './dto/login-dto';
 import { BookDTO } from './dto/book-dto';
 import { LoanDTO } from './dto/loan-dto';
+import { RegisterDTO } from './dto/register-dto';
 
 export type ClientResponse<T> = {
   success: boolean;
@@ -38,6 +39,27 @@ export class LibraryClient {
     } catch (error) {
       const axiosError = error as AxiosError<Error>;
 
+      return {
+        success: false,
+        data: null,
+        statusCode: axiosError.response?.status || 500,
+      };
+    }
+  }
+
+  public async register(data: RegisterDTO): Promise<ClientResponse<null>> {
+    try {
+      const response: AxiosResponse = await this.client.post(
+        '/auth/register',
+        data,
+      );
+      return {
+        success: true,
+        data: null,
+        statusCode: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
       return {
         success: false,
         data: null,

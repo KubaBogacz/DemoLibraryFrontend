@@ -43,12 +43,17 @@ const CustomMenuIcon = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => navigate('/books')}>
+        <MenuItem onClick={() => navigate('/home/books')}>
           {t('listOfBooks')}
         </MenuItem>
         {isAdmin() && (
-          <MenuItem onClick={() => navigate('/loans')}>
+          <MenuItem onClick={() => navigate('/home/loans')}>
             {t('listOfLoans')}
+          </MenuItem>
+        )}
+        {isAdmin() && (
+          <MenuItem onClick={() => navigate('/home/register')}>
+            {t('addUser')}
           </MenuItem>
         )}
         <Divider />

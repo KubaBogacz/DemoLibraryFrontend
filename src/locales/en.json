@@ -13,5 +13,9 @@
   "available": "Availability",
   "loanBooks": "Loan book",
   "loanDate": "Loan date",
-  "bookId": "Book ID"
+  "bookId": "Book ID",
+  "returnBooks": "Return book",
+  "addUser": "Add user",
+  "username": "Username",
+  "password": "Password"
 }
